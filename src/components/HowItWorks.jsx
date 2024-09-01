@@ -1,6 +1,9 @@
-import React from 'react'
+import React,{ Suspense, lazy } from 'react'
 import { SectionWrapper } from '../hoc'
-import { frame_video, frame, chip } from '../data/index'
+import { chip } from '../data/index'
+
+
+const HowItWorkComp = lazy(() => import('./HowItWorkComp'));
 
 function HowItWorks() {
   return (
@@ -11,7 +14,7 @@ function HowItWorks() {
         <p className='text-[#86868b] text-2xl font-medium my-12 '>It's here. The biggest redesign in the history of Apple GPUs.</p>
       </div>
 
-      <div className='relative flex flex-col justify-center items-center'>
+      {/* <div className='relative flex flex-col justify-center items-center'>
         <img src={frame} alt='frame' className='w-full z-10' />
         <video
           src={frame_video}
@@ -22,7 +25,10 @@ function HowItWorks() {
           style={{ clipPath: 'inset(3% 1% 0% 2%)' }} // Adjust as necessary
         />
         <p className='text-[#86868b] mt-4'>Honkoi: Star Rail</p>
-      </div>
+      </div> */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <HowItWorkComp />
+      </Suspense>
 
       <div className='flex justify-between my-16'>
         <p className='text-[#86868b] font-semibold text-xl w-[50%] pr-24 '>A17 Pro is entirely new class of iphone chip that delievers our <span className='text-white '>best graphic performance by far.</span><br />Mobile <span className='text-white'>games will look and feel so immersive</span>, with incredibly detailed environments and characters.</p>
